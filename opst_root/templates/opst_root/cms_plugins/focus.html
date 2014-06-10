@@ -1,0 +1,3 @@
+<h1>{{ focus_page.get_title }}</h1>
+<div id="focus_body">{% if parent_output %}{{parent_output|safeseq|join:""}}{% endif %}</div>
+<a id="focus_link" href="{{ focus_page.get_absolute_url }}">…lire la suite…</a>

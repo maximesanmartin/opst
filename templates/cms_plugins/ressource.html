@@ -1,0 +1,23 @@
+<span>
+	{% if instance.ressource.lien_texte %} <a href="{{ instance.id_ressource.lien_texte }}" > {% endif %} {{instance.ressource.titre}} </a>
+	{% if instance.ressource.texte %},  {{instance.ressource.texte|truncatewords:100}} {% endif %}
+	<u><a href="/search/?q={{ instance.ressource.annee }}">{{ instance.ressource.annee }}</a></u>,
+	{% if instance.ressource.page_deb and instance.ressource.page_fin %} p. {{ instance.ressource.page_deb }} à {{instance.ressource.page_fin}}, {% endif %}
+	{% if instance.ressource.date_debut and instance.ressource.date_fin %} du {{instance.ressource.date_debut}} au {{instance.ressource.date_fin}}, {% endif %}					
+	{% if instance.ressource.editeur %} <a href="/search/?q={{instance.ressource.editeur}}"> {{instance.ressource.editeur}}</a> {% endif %}
+	{% if instance.ressource.formation %} <a href="/search/?q={{instance.ressource.formation}}"> {{instance.ressource.formation}}</a> {% endif %}
+	{% if instance.ressource.universite %} <a href="/search/?q={{instance.ressource.universite}}"> Université de {{instance.ressource.universite}}</a> {% endif %}
+	{% if instance.ressource.discipline %} <a href="/search/?q={{instance.ressource.discipline}}"> {{instance.ressource.discipline}}</a> {% endif %}
+	{% if instance.ressource.type_rapport %} <a href="/search/?q={{instance.ressource.type_rapport}}"> {{instance.ressource.type_rapport}}</a> {% endif %}
+	<b> Revue: </b> 
+		<i> <a href="/search/?q={{instance.ressource.id_revue.nom}}">{{instance.ressource.id_revue.nom}}</a></i>,
+	<b> Auteur(s): </b> 
+		{% for un_auteur in auteurs %}
+			<i> <a href="/search/?q={{un_auteur.nom}}+{{un_auteur.prenom}}"> {{un_auteur.nom}} {{un_auteur.prenom}}</a></i>,	
+		{% endfor %}
+	<b> Tag(s): </b> 
+		{% for un_tag in tags %}
+			<i> <a href="/search/?q={{un_tag.nom}}"> {{un_tag.nom}} </a></i>	
+		{% endfor %}	
+	<br/>
+</span>

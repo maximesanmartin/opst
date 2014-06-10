@@ -1,0 +1,5 @@
+<div id="cloud">
+    {% for tag in tags %}
+    <a href="{{ instance.result_page.get_absolute_url }}?tag={{ tag.0 }}" style="font-size: {{ tag.1 }}px;">{{ tag.0 }}</a>
+    {% endfor %}
+</div>

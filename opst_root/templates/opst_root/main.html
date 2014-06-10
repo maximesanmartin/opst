@@ -1,0 +1,60 @@
+{% load cms_tags sekizai_tags menu_tags page_tags %}
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>OPSN - {{ request.current_page.get_title }}</title>
+    <meta name="keywords" content="{{ request.current_page.pagetagging.page_tags }}" />
+    <link rel="icon" type="image/png" href="{% static "style/logo_128.png" %}" />
+    {% render_block "css" %}
+{% addtoblock "css" %}
+    <link rel="stylesheet" type="text/css" href="{% static "style/yui3-fonts-reset-grids-base-combo-min.css" %}" media="all" />
+    <link rel="stylesheet" type="text/css" href="{% static "style/style.css" %}" media="all" />
+    <link rel="stylesheet" type="text/css" href="{% static "style/stylesheet.css" %}" media="all" />
+{% endaddtoblock %}
+</head>
+
+<body>
+
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://opst.tetaneutral.net/piwik/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "1"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+
+    {% cms_toolbar %}
+    {% render_block "js" %}
+    
+<div id="header">
+    <a id="home" href="/"></a>
+</div>
+
+<ul id="menu">
+    {% show_menu 0 0 %}
+</ul>
+
+<div id="main">
+    {% block main %}{% endblock %}
+</div>
+
+<div id="footer">
+{% pages_with_tags 'footer' order alphabetical as page_list %}
+{% for p in page_list %}
+    <a href="{{ p.get_absolute_url }}">{{ p.get_title }}</a>
+{% endfor %}
+</div>
+
+</body>
+</html>

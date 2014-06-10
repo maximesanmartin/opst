@@ -1,0 +1,10 @@
+{# Cette page HTML gere l'affichage du plugn "MultipleSearchBoxPlugin" #}
+<div id="search-box">
+    <form method="get" action="{{ instance.result_page.get_absolute_url }}">
+        {{form.crit_1}} {{form.comp_1}} {{form.query_1}} {{form.op_1}} <br/>
+		{{form.crit_2}} {{form.comp_2}} {{form.query_2}} {{form.op_2}} <br/>
+		{{form.crit_3}} {{form.comp_3}} {{form.query_3}} {{form.op_3}} <br/>
+		{{form.crit_4}} {{form.comp_4}} {{form.query_4}} <br/>
+        <input type="submit" />
+    </form>
+</div>

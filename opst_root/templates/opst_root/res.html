@@ -1,0 +1,13 @@
+<html>
+	<head>
+		<title> {{ressource.titre}} </title>
+	</head>
+	<h3>
+	{% if ressource.texte %}
+		{{ressource.texte}} <br/>
+	{% else %}
+		pas de texte pour cette ressource <br/>
+	{% endif %}
+	</h3>
+	{{ressource.annee}}
+</html>

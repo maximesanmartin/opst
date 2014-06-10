@@ -1,0 +1,405 @@
+{% load staticfiles %}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"><head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>OPSN - Accueil</title>
+    <meta name="keywords" content="">
+    <link rel="icon" type="image/png" href="http://opsn.fr/static//style/logo_128.png">
+    
+    <link rel="stylesheet" type="text/css" href="{% static "accueil/yui3-fonts-reset-grids-base-combo-min.css" %}" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static "accueil/style.css" %}" media="all">
+    <link rel="stylesheet" type="text/css" href="{% static "accueil/stylesheet.css" %}" media="all">
+	<link href='http://fonts.googleapis.com/css?family=Geo' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+
+<!-- Piwik -->
+<script src="OPSN%20-%20Accueil_fichiers/piwik.js" async="" defer="defer" type="text/javascript"></script><script type="text/javascript">
+  var _paq = _paq || [];
+  _paq.push(["trackPageView"]);
+  _paq.push(["enableLinkTracking"]);
+
+  (function() {
+    var u=(("https:" == document.location.protocol) ? "https" : "http") + "://opst.tetaneutral.net/piwik/";
+    _paq.push(["setTrackerUrl", u+"piwik.php"]);
+    _paq.push(["setSiteId", "1"]);
+    var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
+    g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+
+    
+    
+    <script type="text/javascript" src="OPSN%20-%20Accueil_fichiers/jquery-1.js"></script>
+
+
+
+    
+<div id="header">
+    <a id="home" href="http://opsn.fr/"></a>
+</div>
+
+<ul id="menu">
+    
+
+<li class="sibling">
+	<a href="http://opsn.fr/medias/">Médias</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/territoires/">Territoires</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/poli/">Politique</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/sante/">Santé</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/cooperation/">Coopération</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/education/">Education</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/organisations/">Organisations</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/culture/">Culture</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/sciences/">Sciences</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/droit/">Droit</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/consommation/">Consommation</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/document/">Document</a>
+	
+</li>
+
+<li class="sibling">
+	<a href="http://opsn.fr/ressources/">Ressources</a>
+	
+</li>
+
+
+</ul>
+
+<div id="main">
+    
+
+<div class="yui3-g">
+
+    <div id="col-left" class="yui3-u-1-5">
+        <div id="search-box">
+			<form action="{% url opst_root.views.search %}" method="get">{% csrf_token %}
+				<input id="id_q" type="text" maxlength="128" name="q"/>
+				<input type="submit" value="Submit" />
+			</form>	
+		</div>
+		<div id="cloud">
+			<a href="/opst_root/recherche/?q=blog" style="font-size: 13px;">blog</a>	
+			<a href="/opst_root/recherche/?q=citoyen" style="font-size: 19px;">citoyen</a>
+			<a href="/opst_root/recherche/?q=commerce" style="font-size: 13px;">commerce</a>
+			<a href="/opst_root/recherche/?q=d%C3%A9bat" style="font-size: 13px;">débat</a>
+			<a href="/opst_root/recherche/?q=d%C3%A9mocratie" style="font-size: 13px;">démocratie</a>
+			<a href="/opst_root/recherche/?q=enseignement" style="font-size: 13px;">enseignement</a>
+			<a href="/opst_root/recherche/?q=Google" style="font-size: 13px;">Google</a>
+			<a href="/opst_root/recherche/?q=information" style="font-size: 31px;">information</a>
+			<a href="/opst_root/recherche/?q=innovation" style="font-size: 13px;">innovation</a>
+			<a href="/opst_root/recherche/?q=journalisme" style="font-size: 16px;">journalisme</a>
+			<a href="/opst_root/recherche/?q=marchandisation" style="font-size: 13px;">marchandisation</a>
+			<a href="/opst_root/recherche/?q=m%C3%A9thodologie" style="font-size: 19px;">méthodologie</a>
+			<a href="/opst_root/recherche/?q=r%C3%A9seaux" style="font-size: 13px;">réseaux</a>
+			<a href="/opst_root/recherche/?q=t%C3%A9l%C3%A9matique" style="font-size: 19px;">télématique</a>
+			<a href="/opst_root/recherche/?q=tourisme" style="font-size: 16px;">tourisme</a>
+			<a href="/opst_root/recherche/?q=usages" style="font-size: 31px;">usages</a>
+		</div>
+		<div>
+			<h1 style="margin-bottom: 0px; padding: 0px 0px 5px; font-size: 18px; font-weight: bold; font-family: Geo; color: rgb(106, 99, 97);">Qui sommes-nous ?</h1><ul style="margin-left: 20px; padding: 0px; font-family: arial, helvetica, clean, sans-serif; font-size: 13px; line-height: 16px;"><li><a href="http://opsn.fr/observatoire/">Présentation</a></li><li><a href="http://opsn.fr/membres/" style="text-decoration: none; color: rgb(239, 65, 35);">Membres</a></li><li><a href="http://opsn.fr/chiffres">L'OPSN en chiffres</a></li><li><a href="http://opsn.fr/contact/">Contact</a></li></ul>
+		</div>
+		<div>
+			<h1 style="margin-bottom: 0px; padding: 0px 0px 5px; font-size: 18px; font-weight: bold; font-family: Geo; color: rgb(106, 99, 97);">Partenaires</h1><ul style="margin-left: 20px; padding: 0px; font-family: arial, helvetica, clean, sans-serif; font-size: 13px; line-height: 16px;"><li><a href="http://w3.msh.univ-tlse2.fr/">MSH de Toulouse</a></li><li><a href="http://sms.univ-tlse2.fr/" style="text-decoration: none; color: rgb(239, 65, 35);">LabEx SMS</a></li><li><a href="http://www.univ-tlse3.fr/">Université Paul Sabatier</a></li><li><a href="http://www.univ-tlse3.fr/"></a><a href="http://www.iut-mpy.net/" style="text-decoration: none; color: rgb(239, 65, 35);">IUT Midi-Pyrénées</a></li><li><a href="http://www.toulouse-metropole.fr/" style="text-decoration: none; color: rgb(239, 65, 35);">Toulouse Métropole</a></li></ul>
+		</div>
+	</div>
+
+    <div class="yui3-u-3-5">
+        <div id="une" class="page"><h1>L'observatoire</h1>
+<div id="focus_body"><img class="left" alt="Observatory Par Corey Templeton" src="{% static "accueil/3416350374_0c96eace94_o.jpg" %}" height="380" width="250"> 
+
+<p><strong>L’Observatoire des Pratiques Socio-numériques (OPSN)&nbsp;est
+ une plateforme collaborative et de partage qui contribue à la 
+visibilité et à la structuration de la recherche sur le numérique dans 
+l’Université de Toulouse.</strong></p><p>En Midi-Pyrénées, les recherches en&nbsp;<span style="background-color: rgb(255, 255, 255);">Sciences Humaines et Sociales (SHS) sur le numérique&nbsp;</span>sont nombreuses, anciennes, multidisciplinaires et solidement ancrées dans
+plusieurs laboratoires des trois Universités. Les chercheurs bénéficient d’une
+expertise reconnue et mise au service de la formation, notamment à travers les
+Licences, les Masters et les Ecoles Doctorales. En même temps, cette recherche
+est encore trop peu visible pour les chercheurs eux mêmes et pour les partenaires
+extérieurs (collectivités publiques, entreprises, professionnels…). Il est donc
+nécessaire de collecter, organiser, présenter dans sa diversité et ses
+complémentarités et enfin rendre accessible à tous la production scientifique
+régionale.</p>
+
+<p>&nbsp;L'Observatoire prend notamment en charge la recension, la 
+valorisation et la mise à disposition
+des recherches théoriques et appliquées conduites en Midi-Pyrénées et 
+l’amélioration de leur insertion dans les formations de Licence et de 
+Master
+ainsi que dans les Ecoles Doctorales.</p>
+
+<p>Créé en 2012 par neuf laboratoires
+et un réseau scientifique collaboratif international, il est ouvert à tout
+laboratoire SHS de l’Université de Toulouse concerné par le numérique. Depuis
+janvier 2013, il fait partie du <a href="http://sms.univ-tlse2.fr/">Labex «&nbsp;Structuration des Mondes Sociaux&nbsp;»</a>
+et plus précisément de sa composante <a href="http://sms.univ-tlse2.fr/accueil-sms/comunitic/a-la-une/">ComUniTIC </a>qui fédère les initiatives des
+chercheurs toulousains dans ce champ et développe des échanges avec des
+partenaires socio-économiques ainsi qu’avec le grand public. Son siège social
+est pour l’instant situé au <a href="http://www.lerass.com/">Laboratoire d’études et de recherches appliquées en sciences
+sociales</a> (LERASS, Université Toulouse 3). </p>
+
+<p>L’activité de l’OPSN s’exprime
+plus particulièrement à travers&nbsp;:</p>
+
+<p><em>- Un
+site Internet&nbsp;</em>:
+sa fonction principale est de référencer et mettre en ligne, dans les
+conditions légales, les travaux de recherche dès lors qu’ils ont été publiés
+(articles, ouvrages, actes de colloques…), labellisés par l’Université (thèses,
+mémoires d’Habilitation à Diriger les Recherches) ou qu’ils s’inscrivent dans
+une dynamique contractuelle avérée (rapports de recherche). Il s’agit non
+seulement de valoriser ces travaux, mais aussi de mettre en évidence, à travers
+les co-signatures, les collaborations régionales, nationales et
+internationales, de faire apparaître <em>in fine</em> l’évolution des
+thématiques, les grandes tendances de la recherche ainsi que les thèmes
+émergents. </p>
+
+<p>Il met également en ligne des
+ressources pour les chercheurs&nbsp;:bibliographies thématiques, commentées ou
+non&nbsp;; informations quantitatives et qualitatives produites par des acteurs
+institutionnels et socio-économiques&nbsp;; liens avec des sites utiles pour la
+recherche et/ou partenaires…</p>
+
+<p><em>- Des
+relations multiples recherche/enseignement&nbsp;</em>: propositions de sujets de thèses
+et de mémoires, mise en place d’ateliers ou d’enseignements dédiés au numérique
+dans les formations de l’Université de Toulouse, propositions de projets
+tuteurés en relation avec des partenaires professionnels, création d’une bourse
+de stages, construction de bibliographies thématiques et de tout outil
+méthodologique ou didactique susceptible d’être utilisé en Licence ou en
+Master, organisation de journées interuniversitaires de présentation des
+travaux d’étudiants (mémoires de recherche, projets tuteurés)…</p>
+
+<p><em>- Des
+manifestations</em>
+(colloques, séminaires, workshops, conférences…) s’adressant aux chercheurs ou
+à des publics plus larges (professionnels, étudiants, grand public…) et <em>des
+publications en ligne ou papier&nbsp;en tant qu’éditeur principal ou partenaire
+</em>: actes de colloques et de journées d’études, coordination de numéros de
+revues scientifiques, ouvrages scientifiques et de vulgarisation…</p>
+
+<p>On l’aura compris, l’OPSN souhaite
+non seulement mettre davantage en visibilité les travaux de recherche conduits
+sur le site, mais aussi les partager.</p>
+
+
+
+
+
+
+
+<ul id="branchmap">
+
+
+
+</ul> 
+</div>
+<a id="focus_link" href="http://opsn.fr/observatoire/">…lire la suite…</a>
+</div>
+        <div id="second" class="page">
+
+
+<div class="carouslide">
+    <div id="carouslide-left-23" class="button carouslide-left"></div>
+    <div id="carouslide-content-23" class="carouslide-content"><div style="" onclick="document.location='/revue-de-presse/jean-lassegue-le-numerique-et-lecriture-quelques-reperes-historiques-et-anthropologiques-27-mars-salle-detude-de-la-bibliotheque-centrale-du-mirail-a-confirmer-163/'" class="button carouslide-focus"><h1>"Jean
+ Lassègue Le numérique et l’écriture : quelques repères historiques et 
+anthropologiques 27 Mars, salle d’étude de la bibliothèque centrale du 
+Mirail (à confirmer)"</h1><p>"Jean Lassègue Le numérique et l’écriture : quelques repères historiques et anthropologiques
+27 Mars, salle d’étude de la bibliothèque centrale du Mirail (à confirmer)"</p>
+		
+		
+		
+		<p class="diigo-tags"><strong>Tags:</strong>
+				        
+	        <a href="https://www.diigo.com/user/smykos/opstfr" rel="tag">opstfr</a>
+	      	
+		</p><p><a href="http://semiotico.fr/semiotique-et-numerique/">Lire la suite de l'article…</a></p></div><div style="" onclick="document.location='/revue-de-presse/histoire-et-transformations-numeriques-dans-lenseignement-superieur-et-la-recherche-162/'" class="button carouslide-blur"><h1>HISTOIRE et transformations numériques dans l’enseignement supérieur et la recherche</h1><p>"Deux
+ questions préliminaires aux trois invités pour ouvrir le débat :
+
+    Question n°1 (aux trois chercheurs) : Quelles sont à votre avis, en 
+histoire, les transformations les plus importantes, liées au numérique, 
+modifiant le processus (données, traitements, éditions, pédagogies, 
+valorisations) allant de la recherche à ses diffusions pédagogiques et 
+publiques ? 
+
+    Question n°2 (aux trois chercheurs) : Quelles sont, à votre avis, 
+les spécificités des disciplines historiques (vis à vis d’autres 
+disciplines que vous connaîtriez dans le domaine des arts, lettres et 
+sciences humaines), dans le rapport aux transformations numériques des 
+pratiques de recherche et d’enseignement ? "</p>
+		
+		
+		
+		<p class="diigo-tags"><strong>Tags:</strong>
+				        
+	        <a href="https://www.diigo.com/user/smykos/opstfr" rel="tag">opstfr</a>
+	      	
+		</p><p><a href="http://www.reseau-terra.eu/article1309.html">Lire la suite de l'article…</a></p></div><div style="" onclick="document.location='/revue-de-presse/structurations-des-mondes-sociaux-sms-colloque-du-labex-comprendre-les-mondes-sociaux-161/'" class="button carouslide-blur"><h1>Structurations des Mondes Sociaux (SMS) - Colloque du labex : comprendre les mondes sociaux</h1></div><div style="" onclick="document.location='/revue-de-presse/structurations-des-mondes-sociaux-sms-colloque-du-labex-comprendre-les-mondes-sociaux-160/'" class="button carouslide-blur"><h1>Structurations des Mondes Sociaux (SMS) - Colloque du labex : comprendre les mondes sociaux</h1></div><div style="" onclick="document.location='/revue-de-presse/le-premier-atlas-mondial-de-la-biodiversite-des-eaux-douces-est-en-ligne-158/'" class="button carouslide-blur"><h1>Le premier atlas mondial de la biodiversité des eaux douces est en ligne</h1><p>"L'atlas
+ de la biodiversité des eaux douces regroupe, sous forme cartographique,
+ les dernières avancées scientifiques sur la biodiversité de ces 
+milieux. Il a été conduit dans le cadre du projet BIOFRESH auquel ont 
+notamment participé des chercheurs du laboratoire Evolution et diversité
+ biologique de l'Université.
+Cet atlas présente en particulier les patrons spatiaux de diversité des 
+écosystèmes aquatiques, les pertubations qu'ils subissent et les 
+initiatives de conservation des milieux et des organismes qu'ils 
+abritent. "</p>
+		
+		
+		
+		<p class="diigo-tags"><strong>Tags:</strong>
+				        
+	        <a href="https://www.diigo.com/user/smykos/opstfr" rel="tag">opstfr</a>
+	      	
+		</p><p><a href="http://www.univ-tlse3.fr/1391522025309/0/fiche___actualite/">Lire la suite de l'article…</a></p></div></div>
+    <div id="carouslide-right-23" class="button carouslide-right"></div>
+</div>
+
+<script type="text/javascript">
+
+function carouslide_switch(e, target, dir) {
+    
+    if($(target).data('focusing')) return;
+
+    var cur_el = $('.carouslide-focus', target);
+    var next_el;
+
+    if(dir == 'next') {
+        next_el = cur_el.next();
+        if(!next_el.length) next_el = $('> *:first-child', target)
+    } else if (dir == 'prev') {
+        next_el = cur_el.prev();
+        if(!next_el.length) next_el = $('> *:last-child', target)
+    }
+
+    if(!next_el.length || next_el == cur_el) return;
+    
+    $(target).data('focusing', true);
+
+    next_el.addClass('carouslide-focusing');
+    next_el.removeClass('carouslide-focus');
+    next_el.removeClass('carouslide-blur');
+
+    cur_el.fadeOut(function(e) {
+    
+        cur_el.addClass('carouslide-blur');
+        cur_el.css('display', '');
+        cur_el.removeClass('carouslide-focus');
+        cur_el.removeClass('carouslide-focusing');
+        next_el.removeClass('carouslide-focusing');
+        next_el.addClass('carouslide-focus');
+        $(target).data('focusing', false);
+    });
+}
+
+$('#carouslide-content-23').data('focusing', false);
+$('#carouslide-right-23').click(
+    function(e) { carouslide_switch(e, '#carouslide-content-23', 'next'); }
+);
+$('#carouslide-left-23').click(
+    function(e) { carouslide_switch(e, '#carouslide-content-23', 'prev'); }
+);
+setInterval(function(e) { carouslide_switch(e, '#carouslide-content-23', 'next'); }, 8000);
+
+</script>
+</div>
+    </div>
+
+    <div id="col-right" class="yui3-u-1-5">
+        
+<div class="newsfeed">
+    <h1>Actualité</h1>
+    <ul>
+        
+        <li><a href="http://opsn.fr/revue-de-presse/jean-lassegue-le-numerique-et-lecriture-quelques-reperes-historiques-et-anthropologiques-27-mars-salle-detude-de-la-bibliotheque-centrale-du-mirail-a-confirmer-163">"Jean
+ Lassègue Le numérique et l’écriture : quelques repères historiques et 
+anthropologiques 27 Mars, salle d’étude de la bibliothèque centrale du 
+Mirail (à confirmer)"</a></li>
+        
+        <li><a href="http://opsn.fr/revue-de-presse/histoire-et-transformations-numeriques-dans-lenseignement-superieur-et-la-recherche-162">HISTOIRE et transformations numériques dans l’enseignement supérieur et la recherche</a></li>
+        
+        <li><a href="http://opsn.fr/revue-de-presse/structurations-des-mondes-sociaux-sms-colloque-du-labex-comprendre-les-mondes-sociaux-161">Structurations des Mondes Sociaux (SMS) - Colloque du labex : comprendre les mondes sociaux</a></li>
+        
+        <li><a href="http://opsn.fr/revue-de-presse/structurations-des-mondes-sociaux-sms-colloque-du-labex-comprendre-les-mondes-sociaux-160">Structurations des Mondes Sociaux (SMS) - Colloque du labex : comprendre les mondes sociaux</a></li>
+        
+        <li><a href="http://opsn.fr/revue-de-presse/le-premier-atlas-mondial-de-la-biodiversite-des-eaux-douces-est-en-ligne-158">Le premier atlas mondial de la biodiversité des eaux douces est en ligne</a></li>
+        
+        <li><a href="http://opsn.fr/revue-de-presse/le-numerique-economie-du-partage-et-des-transactions-publication-dun-ouvrage-de-godefroy-dang-nguyen-et-sylvain-dejean-marsouin-org-159">«
+ Le numérique – Économie du partage et des transactions » publication 
+d'un ouvrage de Godefroy Dang Nguyen et Sylvain Dejean - MARSOUIN.ORG</a></li>
+        
+        <li><a href="http://opsn.fr/revue-de-presse/theories-des-jeux-video-ep-7-ideologies-des-jeux-video-2-2-omnsh-151">Théories des jeux vidéo. Ep. 7. Idéologies des jeux vidéo 2/2 | OMNSH</a></li>
+        
+        <li><a href="http://opsn.fr/revue-de-presse/la-demarche-arts-sciences-face-au-numerique-omnsh-148">La démarche Arts/Sciences face au numérique | OMNSH</a></li>
+        
+    </ul>
+</div>
+
+
+    </div>
+
+</div>
+
+
+</div>
+
+<div id="footer">
+
+
+    <a href="http://opsn.fr/contact/">Contact et informations</a>
+
+    <a href="http://opsn.fr/contributeurs/">Contributeurs</a>
+
+    <a href="http://opsn.fr/map/">Plan du site</a>
+
+</div>
+
+
+
+</body></html>

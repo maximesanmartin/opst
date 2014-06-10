@@ -1,0 +1,9 @@
+{% if latest_revue_list %}
+    <ul>
+    {% for revue in latest_revue_list %}
+        <li><a href="{% url opst_root.views.revue revue.id %}">{{ revue.nom }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No revues are available.</p>
+{% endif %}

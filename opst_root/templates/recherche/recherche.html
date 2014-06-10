@@ -1,0 +1,35 @@
+{% extends "main.html" %}
+{% block main %}
+	<div id="main">
+		<div class="yui3-g">
+			<div class="yui3-u-1-5" id="col-left">
+				<div id="search-box">
+					<form action="{% url opst_root.views.search %}" method="get">{% csrf_token %}
+						<input id="id_q" type="text" maxlength="128" name="q"/>
+						<input type="submit" value="Submit" />
+					</form>	
+				</div>
+			</div>
+
+			<div class="yui3-u-3-5 page">
+				<h1>Recherche</h1>        	
+				<!-- ################# RESULTAT DE LA REQUETE ################## -->
+				<div id="search-result">
+					<h2>{{taille}} resultat{{ taille|pluralize }} obtenu{{ taille|pluralize }} pour "{{q}}". </h2>
+					<ul>
+						{% for une_ressource in res %}
+							<li>
+								{% if une_ressource.lien_texte %}<a href="{{une_ressource.lien_texte}}"> {% endif %}  {{une_ressource.titre}} </a>
+								,{% if une_ressource.texte %} {{ une_ressource.texte|truncatewords:20 }}, {% endif %} 
+								<u><a href="?q={{une_ressource.annee}}"> {{une_ressource.annee}} </a></u>	
+								- <b> <a href="{% url opst_root.views.affichage_ressource une_ressource.slug as slug %}"> Plus d'infos </a> </b>
+							</li>
+						{% endfor %}
+					</ul>
+				</div>
+			</div>
+			<div class="yui3-u-1-5" id="col-right">       
+			</div>
+		</div>
+	</div>
+{% endblock %}

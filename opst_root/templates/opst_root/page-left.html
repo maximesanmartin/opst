@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+
+{% load cms_tags menu_tags %}
+
+{% block main %}
+
+<div class="yui3-g">
+
+    <div id="col-left" class="yui3-u-1-5">
+        {% placeholder "left" %}
+    </div>
+
+    <div class="yui3-u-3-5 page">
+        <h1>{{ request.current_page.get_title }}</h1>
+{% placeholder "page" %}
+    </div>
+
+    <div id="col-right" class="yui3-u-1-5">
+        {% placeholder "right" %}
+    </div>
+
+</div>
+
+{% endblock %}

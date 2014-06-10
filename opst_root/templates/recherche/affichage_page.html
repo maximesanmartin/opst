@@ -1,0 +1,45 @@
+{% extends "main.html" %}
+{% block main %}
+	<div id="main">   
+		<div class="yui3-g">
+			<div class="yui3-u-1-5" id="col-left">
+				<div id="search-box">
+					<form action="{% url opst_root.views.search %}" method="get">{% csrf_token %}
+						<input id="id_q" type="text" maxlength="128" name="q"/>
+						<input type="submit" value="Submit" />
+					</form>	
+				</div>
+			</div>
+			<div class="yui3-u-3-5 page">
+				<div id="search-result">
+					<h2> {{ressource.titre}} </h2>
+					{% if une_ressource.texte %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{une_ressource.texte}} {% endif %}
+					<br/><br/><b> Année: </b> 
+					<a href="recherche/?q={{ressource.titre}}">{{ressource.titre}}</a>,<br/>
+					<b> Revue: </b> 
+					<i> <a href="recherche/?q={{revue.nom}}"> {{revue.nom}}</a></i>,<br/>
+					<b> Auteur(s): </b>
+					{% for un_auteur in auteurs %}
+						<i> <a href="recherche/?q={{un_auteur.nom}}">{{un_auteur.nom}}</a></i>,
+					{% endfor %}
+					<br/>
+					<b> Tag(s): </b> 
+					{% for un_tag in tags %}
+						<i> <a href="recherche/?q={{un_tag.nom}}">{{un_tag.nom}}</a></i>,
+					{% endfor %}
+					<br>
+					<b> Type de publication: </b>
+					{% for csc in cats_ss_cats %}
+						{% for i,elem in enumerate(csc) %}
+							<i> <a href="recherche/?q={{elem.slug}}"> {{elem.nom}} </a></i>{% if i==1 %} / {% endif %}
+						{% endfor %}
+					{% endfor %},
+					<br/><br/>
+					{% if une_ressource.lien_texte %}<h4><a href="{{une_ressource.lien_texte}}"> Texte complet ici </a> </h4> {% endif %}
+				</div>
+			</div>
+			<div class="yui3-u-1-5" id="col-right">       
+			</div>
+		</div>
+	</div>
+{% endblock %}

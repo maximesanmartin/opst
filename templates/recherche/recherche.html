@@ -1,0 +1,50 @@
+{% comment %}
+	Ce template permet l'affichage des resultats d'une recherche
+{% endcomment %}
+{# charge le module de pagination #}
+{% load pagination_tags %}
+{# charge le module de tri #}
+{% load sorter_tags %}
+{# l'importation de ce module permet de manipuler la fonction 'url' de la meme maniere que dans les dernieres versions de django #}
+{% load url from future %}
+
+<div id="search-result">
+	{# L'affichage de variable envoyees par le plugin SearchResultPlugin se fait en ecrivant la variable a l'interieur des balises "{{ }}" #}
+	<h2>{{results_n}} resultat{{ results_n|pluralize }} obtenu{{ results_n|pluralize }}{% if query_string %} pour "{{query_string}}"{% endif %}.</h2>
+	
+	{# Traitement des conditions et des boucles dans des balises "{% %}" #}
+	{# s'il y a des resultats #}
+	{% if results_n != 0 %}
+	<div class="TableauResultat">
+		<table>
+			{# trie les resultats selon le parametre "sort" donne par l'url #}
+			{% sort results as sorted_objects %}
+			{# Ligne d'entete du tableau #}
+			<tr>
+				{# "ifequal" renvoie seulement si les deux chaines donnees sont identiques #}
+				<td> Auteur(s) </td>
+				<td> {% sortlink by 'titre' '-titre' %} Titre </a> {% endsortlink %} {% ifequal sort '-titre' %}<i class="fa fa-sort-desc"></i> {% else %}{% ifequal sort 'titre' %} <i class="fa fa-sort-asc"></i> {% endifequal %}{% endifequal %} </td>
+				<td> {% sortlink by 'texte' '-texte' %} Texte </a> {% endsortlink %} {% ifequal sort '-texte' %}<i class="fa fa-sort-desc"></i> {% else %}{% ifequal sort 'texte' %} <i class="fa fa-sort-asc"></i> {% endifequal %}{% endifequal %} </td>
+				<td> {% sortlink by 'annee' '-annee' %} Année </a> {% endsortlink %} {% ifequal sort 'annee' %}<i class="fa fa-sort-asc"></i> {% else %}{% ifequal sort '-annee' %} <i class="fa fa-sort-desc"></i> {% endifequal %}{% endifequal %} </td>
+				<td> Tag(s) </td>
+				<td> Compléments </td>
+			</tr>
+			{# On delimite le nombre de resultats a 10 par pages #}
+			{% autopaginate sorted_objects 10 %}
+			{# Pour chaque ressource recupere dans la liste "results" on affiche une nouvelle ligne #}
+			{% for une_ressource in sorted_objects %}
+				<tr>
+					<td>{% for un_auteur in une_ressource.auteurs.all %} <a href="/search/?q={{un_auteur.nom}}+{{un_auteur.prenom}}"> {{un_auteur.nom}} {{un_auteur.prenom}}.</a> {% empty %} Aucun auteur {% endfor %} </td>
+					<td>{% if une_ressource.lien_texte %}<a href="{{une_ressource.lien_texte}}"> {% endif %} {{une_ressource.titre}} </a> </td>
+					<td>{% if une_ressource.texte %} {{ une_ressource.texte|truncatewords:20 }} {% else %} Aucun texte {% endif %} </td>
+					<td> <a href="?q={{une_ressource.annee}}"> {{une_ressource.annee}}</a> </td>
+					<td>{% for un_tag in une_ressource.tags.all %} <a href="/search/?q={{un_tag.nom}}"> {{un_tag.nom}}</a> {% empty %} Aucun tag {% endfor %} </td>
+					<td> <b> <a href="/opst_root/affichage/{{une_ressource.slug}}"> Plus d'infos </a> </b> </td>
+				</tr>
+			{% endfor %}
+		</table>
+	</div>
+	<br/><br/>
+	{% paginate %}
+	{% endif %}
+</div>

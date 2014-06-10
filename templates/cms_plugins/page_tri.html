@@ -1,0 +1,18 @@
+<span>
+	{% for une_ressource in ressources %}
+		{% if une_ressource.lien_texte %} <a href="{{ une_id_ressource.lien_texte }}" > {% endif %} {{une_ressource.titre}} </a>
+		{% if une_ressource.texte %},  {{une_ressource.texte|truncatewords:100}} <a href="">(lire la suite...)</a> {% endif %}
+		, <u><a href="/search/?q={{ une_ressource.annee }}">  {{ une_ressource.annee }} </a></u>,
+		{% if une_ressource.page_deb and une_ressource.page_fin %} p. {{ une_ressource.page_deb }} à {{une_ressource.page_fin}}, {% endif %}
+		{% if une_ressource.date_debut and une_ressource.date_fin %} du {{une_ressource.date_debut}} au {{une_ressource.date_fin}}, {% endif %}					
+		{% if une_ressource.editeur %} <a href="/search/?q={{une_ressource.editeur}}"> {{une_ressource.editeur}}</a> {% endif %}
+		{% if une_ressource.formation %} <a href="/search/?q={{une_ressource.formation}}"> {{une_ressource.formation}}</a> {% endif %}
+		{% if une_ressource.universite %} <a href="/search/?q={{une_ressource.université}}"> {{une_ressource.université}}</a> {% endif %}
+		{% if une_ressource.discipline %} <a href="/search/?q={{une_ressource.discipline}}"> {{une_ressource.discipline}}</a> {% endif %}
+		{% if une_ressource.type_rapport %} <a href="/search/?q={{une_ressource.type_rapport}}"> {{une_ressource.type_rapport}}</a> {% endif %}
+		<b> Revue: </b> 
+			<i> <a href="/search/?q={{une_ressource.id_revue.nom}}">  {{une_ressource.id_revue.nom}} </a></i>
+	{% empty %}
+		Aucune ressource disponible...
+	{% endfor %}
+</span>

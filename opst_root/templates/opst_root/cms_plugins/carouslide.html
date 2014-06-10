@@ -1,0 +1,59 @@
+{% load sekizai_tags %}
+{% addtoblock "js" %}
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.8.3.min.js"></script>
+{#    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-log.min.js"></script> #}
+{% endaddtoblock %}
+
+<div class="carouslide">
+    <div id="carouslide-left-{{ instance.pk }}" class="button carouslide-left"></div>
+    <div id="carouslide-content-{{ instance.pk }}" class="carouslide-content">{{ carouslide_content }}</div>
+    <div id="carouslide-right-{{ instance.pk }}" class="button carouslide-right"></div>
+</div>
+
+<script type="text/javascript">
+
+function carouslide_switch(e, target, dir) {
+    
+    if($(target).data('focusing')) return;
+
+    var cur_el = $('.carouslide-focus', target);
+    var next_el;
+
+    if(dir == 'next') {
+        next_el = cur_el.next();
+        if(!next_el.length) next_el = $('> *:first-child', target)
+    } else if (dir == 'prev') {
+        next_el = cur_el.prev();
+        if(!next_el.length) next_el = $('> *:last-child', target)
+    }
+
+    if(!next_el.length || next_el == cur_el) return;
+    
+    $(target).data('focusing', true);
+
+    next_el.addClass('carouslide-focusing');
+    next_el.removeClass('carouslide-focus');
+    next_el.removeClass('carouslide-blur');
+
+    cur_el.fadeOut(function(e) {
+    
+        cur_el.addClass('carouslide-blur');
+        cur_el.css('display', '');
+        cur_el.removeClass('carouslide-focus');
+        cur_el.removeClass('carouslide-focusing');
+        next_el.removeClass('carouslide-focusing');
+        next_el.addClass('carouslide-focus');
+        $(target).data('focusing', false);
+    });
+}
+
+$('#carouslide-content-{{ instance.pk }}').data('focusing', false);
+$('#carouslide-right-{{ instance.pk }}').click(
+    function(e) { carouslide_switch(e, '#carouslide-content-{{ instance.pk }}', 'next'); }
+);
+$('#carouslide-left-{{ instance.pk }}').click(
+    function(e) { carouslide_switch(e, '#carouslide-content-{{ instance.pk }}', 'prev'); }
+);
+setInterval(function(e) { carouslide_switch(e, '#carouslide-content-{{ instance.pk }}', 'next'); }, 8000);
+
+</script>

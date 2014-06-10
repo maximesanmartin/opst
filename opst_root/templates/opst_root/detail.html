@@ -1,0 +1,12 @@
+<h1>{{ revue.nom }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url opst_root.views.vote revue.id %}" method="post">
+{% csrf_token %}
+{% for ressource in revue.ressource_set.all %}
+    <input type="radio" name="ressource" id="ressource{{ forloop.counter }}" value="{{ ressource.id }}" />
+    <label for="ressource{{ forloop.counter }}">{{ ressource.titre }}</label><br/>
+{% endfor %}
+<input type="submit" value="Vote" />
+</form>

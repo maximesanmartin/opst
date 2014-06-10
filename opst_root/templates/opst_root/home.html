@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+
+{% load cms_tags %}
+
+{% block main %}
+
+<div class="yui3-g">
+
+    <div id="col-left" class="yui3-u-1-5">
+        {% placeholder "left" %}
+    </div>
+
+    <div class="yui3-u-3-5">
+        <div id="une" class="page">{% placeholder "page" %}</div>
+        <div id="second" class="page">{% placeholder "second" %}</div>
+    </div>
+
+    <div id="col-right" class="yui3-u-1-5">
+        {% placeholder "right" %}
+    </div>
+
+</div>
+
+{% endblock %}

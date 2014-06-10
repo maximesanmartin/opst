@@ -1,0 +1,10 @@
+{% if instance %}
+<div class="newsfeed">
+    <h1>{{ instance.title }}</h1>
+    <ul>
+        {% for news in newsfeed %}
+        <li><a href="{{ news.link }}">{{ news.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}

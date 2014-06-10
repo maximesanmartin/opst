@@ -1,0 +1,50 @@
+{% extends "main.html" %}
+{% block main %}
+	<div id="main">   
+		<div class="yui3-g">
+			<div class="yui3-u-1-5" id="col-left">
+				<div id="search-box">
+					<form action="/search" method="get">
+						<input id="id_q" type="text" maxlength="128" name="q"/>
+						<input type="submit" value="Submit" />
+					</form>	
+				</div>
+			</div>
+			<div class="yui3-u-3-5 page">
+				<div id="search-result">
+					<h2> {{ressource.titre}} </h2>
+					{% if ressource.texte %}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {{ressource.texte}} {% else %} <b> Aucun texte disponible </b> {% endif %}
+					<br/><br/><b> Année: </b> 
+					<a href="/search/?q={{ressource.annee}}">{{ressource.annee}}</a>,<br/>
+					{% if ressource.page_deb and ressource.page_fin %} <b> Pages: </b> {{ ressource.page_deb }} à {{ressource.page_fin}}, <br/> {% endif %}
+					{% if ressource.date_debut and ressource.date_fin %} <b> Dates: </b>  du {{ressource.date_debut}} au {{ressource.date_fin}}, <br/> {% endif %}					
+					{% if ressource.editeur %}  <b> Editeur: </b> <a href="/search/?q={{ressource.editeur}}"> {{ressource.editeur}}</a> <br/> {% endif %}
+					{% if ressource.formation %} <b> Formation: </b> <a href="/search/?q={{ressource.formation}}"> {{ressource.formation}}</a> <br/> {% endif %}
+					{% if ressource.universite %} <b> Universite: </b> <a href="/search/?q={{ressource.universite}}">  Université de {{ressource.universite}}</a> <br/> {% endif %}
+					{% if ressource.discipline %} <b> Discipline: </b> <a href="/search/?q={{ressource.discipline}}"> {{ressource.discipline}}</a> <br/> {% endif %}
+					{% if ressource.type_rapport %} <b> Type de Rapport: </b> <a href="/search/?q={{ressource.type_rapport}}"> {{ressource.type_rapport}}</a> <br/> {% endif %}
+					<b> Revue: </b> 
+					<i> <a href="/search/?q={{revue.nom}}">{{revue.nom}}</a></i>,<br/>
+					<b> Auteur(s): </b>
+					{% for un_auteur in auteurs %}
+						<i> <a href="/search/?q={{un_auteur.nom}}">{{un_auteur.nom}} {{un_auteur.prenom}}</a></i>,
+					{% endfor %}
+					<br/>
+					<b> Tag(s): </b> 
+					{% for un_tag in tags %}
+						<i> <a href="/search/?q={{un_tag.nom}}">{{un_tag.nom}}</a></i>,
+					{% endfor %}
+					<br>
+					<b> Type de publication: </b>
+					{% for un_csc in cats_ss_cats %}
+						<i> <a href="/search/?q={{un_csc.slug}}"> {{un_csc.nom}} </a></i>
+					{% endfor %}
+					</br/><br/>
+					{% if ressource.lien_texte %}<h4><a href="{{ressource.lien_texte}}"> Texte complet ici </a> </h4> {% endif %}
+				</div>
+			</div>
+			<div class="yui3-u-1-5" id="col-right">       
+			</div>
+		</div>
+	</div>
+{% endblock %}
