@@ -6,6 +6,8 @@
 
 from django.contrib import admin
 from .models import *
+from django.contrib.contenttypes.generic import GenericInlineModelAdmin
+from tagging.models import TaggedItem
 
 # Le modele "NewsFeedEntry" est ajoute a l'interface d'admnistration
 admin.site.register(NewsFeedEntry)

@@ -1,22 +1,23 @@
 <b> {% if annees %} {{annees.pop}} {% else %} Aucune Ressource disponible à cette page {% endif %} </b><br/><br/>
 {% for ressource in ressources %}
+	<div class="ressource">
 	{% for un_auteur in ressource.auteurs.all %}
-		<i> <a href="/search/?q={{un_auteur.nom}}+{{un_auteur.prenom}}">{{un_auteur.nom}} {{un_auteur.prenom}}.</a></i>,
+		<a href="/search/?q={{un_auteur.nom}}+{{un_auteur.prenom}}">{{un_auteur.nom}} {{un_auteur.prenom}}.</a>,
 	{% endfor %}
-	{% if ressource.lien_texte %}<a href="{{ressource.lien_texte}}">{% endif %}<i>« {{ressource.titre}} »</i></a>,
-	{{une_ressource.texte|default:'Aucun texte'}},
-	<b> Date: </b> 
+	{% if ressource.lien_texte %}<a href="{{ressource.lien_texte}}" target="_blank">{% endif %}<i>« {{ressource.titre}} »</i></a>,
+	{% if une_ressource.texte %}{{une_ressource.texte}}, {% endif %}
 	{% if ressource.mois %} <a href="/search/?q={{ressource.mois}}"> {{ressource.mois}}</a> {% endif %}
-	<a href="/search/?q={{ressource.annee}}">{{ressource.annee}}</a>
-	{% if revue.nom %}<b> Revue: </b> 
-	<i> <a href="recherche/?q={{revue.nom}}"> {{revue.nom}}</a></i> {% endif %}
-	{% if ressource.page_deb and ressource.page_fin %} <b> Pages: </b> {{ ressource.page_deb }} à {{ressource.page_fin}} {% endif %}
-	{% if ressource.date_debut and ressource.date_fin %} <b> Dates: </b>  du {{ressource.date_debut}} au {{ressource.date_fin}} {% endif %}					
-	{% if ressource.editeur %}  <b> Editeur: </b> <a href="/search/?q={{ressource.editeur}}"> {{ressource.editeur}}</a> {% endif %}
-	{% if ressource.formation %} <b> Formation: </b> <a href="/search/?q={{ressource.formation}}"> {{ressource.formation}}</a> {% endif %}
-	{% if ressource.universite %} <b> Universite: </b> <a href="/search/?q={{ressource.universite}}">  Université de {{ressource.universite}}</a> {% endif %}
-	{% if ressource.discipline %} <b> Discipline: </b> <a href="/search/?q={{ressource.discipline}}"> {{ressource.discipline}}</a> {% endif %}
-	{% if ressource.type_rapport %} <b> Type de Rapport: </b> <a href="/search/?q={{ressource.type_rapport}}"> {{ressource.type_rapport}}</a> {% endif %}
+	<a href="/search/?q={{ressource.annee}}">{{ressource.annee}}</a>,
+	{% if revue.nom %}
+	<i> <a href="recherche/?q={{revue.nom}}"> {{revue.nom}}</a></i>, {% endif %}
+	{% if ressource.page_deb and ressource.page_fin %} {{ ressource.page_deb }} à {{ressource.page_fin}}, {% endif %}
+	{% if ressource.date_debut and ressource.date_fin %}  du {{ressource.date_debut}} au {{ressource.date_fin}}, {% endif %}					
+	{% if ressource.editeur %}  <a href="/search/?q={{ressource.editeur}}"> {{ressource.editeur}}</a>, {% endif %}
+	{% if ressource.formation %} <a href="/search/?q={{ressource.formation}}"> {{ressource.formation}}</a>, {% endif %}
+	{% if ressource.universite %} <a href="/search/?q={{ressource.universite}}">  Université de {{ressource.universite}}</a>, {% endif %}
+	{% if ressource.discipline %} <a href="/search/?q={{ressource.discipline}}"> {{ressource.discipline}}</a>, {% endif %}
+	{% if ressource.type_production %} <i> <a href="/search/?q={{ressource.type_production}}"> {{ressource.type_production}}</a></i>, {% endif %}
+	{% if ressource.type_rapport %} <a href="/search/?q={{ressource.type_rapport}}"> {{ressource.type_rapport}}</a>, {% endif %}
 	<b> Tag{{ressource.tags.all.count|pluralize}}: </b> 
 	{% for un_tag in ressource.tags.all %}
 		<i> <a href="/search/?q={{un_tag.nom}}">{{un_tag.nom}}</a></i>,
@@ -32,4 +33,5 @@
 	{% else %}
 		<b> {{annees.pop}} </b><br/><br/>
 	{% endifequal %}
+	</div>
 {% endfor %}

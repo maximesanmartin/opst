@@ -1,6 +1,39 @@
-<div id="search-box">
+<div class="search-box" id="box1">
 	<form method="get" action="{{ instance.result_page.get_absolute_url }}">
 			{{ form.q }}
 			<input type="submit" />
 	</form>
 </div>
+{% ifequal path '/search/' %}
+	{# Cette page HTML gere l'affichage du plugin "MultipleSearchBoxPlugin" #}
+	<div class="search-box" id="box2">
+		<form method="get" action="{{ instance.result_page.get_absolute_url }}">
+			{{form2.crit_1}} {{form2.comp_1}} {{form2.query_1}} {{form2.op_1}} <br/>
+			{{form2.crit_2}} {{form2.comp_2}} {{form2.query_2}} {{form2.op_2}} <br/>
+			{{form2.crit_3}} {{form2.comp_3}} {{form2.query_3}} {{form2.op_3}} <br/>
+			{{form2.crit_4}} {{form2.comp_4}} {{form2.query_4}} <br/>
+			<input type="submit" />
+		</form>
+	</div>
+	<button id="sup">{% if form.q %} Afficher formulaire avancé {% else %} Afficher formulaire simple {% endif %}</button>
+	<script type="text/javascript">
+		{% if q %}
+			$('#box2').hide();
+		{% else %}
+			$('#box1').hide();
+		{% endif %}
+	
+		$("#sup").click(function() {
+			if($('#box1').is(':visible')){
+				$( "#box1" ).fadeToggle('fast');
+				$( "#box2" ).show('fast');
+				$("#sup").html("Afficher formulaire simple");
+		}
+			else if($('#box2').is(':visible')){
+				$( "#box2" ).fadeToggle('fast');
+				$( "#box1" ).show('fast');
+				$("#sup").html("Afficher formulaire avancé");
+			}
+		});
+	</script>
+{% endifequal %}

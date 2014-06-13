@@ -7,13 +7,13 @@
     <title>OPSN - {{ request.current_page.get_title|default:"Affichage" }}</title>
     <meta name="keywords" content="{{ request.current_page.pagetagging.page_tags }}" />
     <link rel="icon" type="image/png" href="{% static "style/logo_128.png" %}" />
+	<script src="{% static "js/jquery-2.1.1.js" %}"></script>
     {% render_block "css" %}
 {% addtoblock "css" %}
     <link rel="stylesheet" type="text/css" href="{% static "style/yui3-fonts-reset-grids-base-combo-min.css" %}" media="all" />
     <link rel="stylesheet" type="text/css" href="{% static "style/style.css" %}" media="all" />
     <link rel="stylesheet" type="text/css" href="{% static "style/stylesheet.css" %}" media="all" />
 	<link rel="stylesheet" href="{% static "style/font-awesome/css/font-awesome.min.css" %}" media="all">
-
 {% endaddtoblock %}
 </head>
 

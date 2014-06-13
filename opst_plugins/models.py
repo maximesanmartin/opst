@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.template.defaultfilters import slugify
-
 from cms.models import CMSPlugin
 
 
@@ -118,6 +117,8 @@ class Auteur(models.Model):
     prenom = models.CharField(max_length=90)
     def __unicode__(self):
         return self.nom + ' ' + self.prenom 
+    def save(self, *args, **kwargs):
+        super(Auteur, self).save(*args, **kwargs) # Call the "real" save() method.
     class Meta:
         db_table = u'auteur'
 
@@ -130,7 +131,6 @@ class Categorie(models.Model):
     class Meta:
         db_table = u'categorie'
 
-
 class Revue(models.Model):
     id = models.IntegerField(primary_key=True)
     nom = models.CharField(max_length=300)
@@ -139,7 +139,7 @@ class Revue(models.Model):
         return self.nom
     class Meta:
         db_table = u'revue'
-	
+
 class Tag(models.Model):
     id = models.IntegerField(primary_key=True)
     nom = models.CharField(max_length=120)

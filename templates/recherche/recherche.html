@@ -23,10 +23,11 @@
 			<tr>
 				{# "ifequal" renvoie seulement si les deux chaines donnees sont identiques #}
 				<td> Auteur(s) </td>
-				<td> {% sortlink by 'titre' '-titre' %} Titre </a> {% endsortlink %} {% ifequal sort '-titre' %}<i class="fa fa-sort-desc"></i> {% else %}{% ifequal sort 'titre' %} <i class="fa fa-sort-asc"></i> {% endifequal %}{% endifequal %} </td>
-				<td> {% sortlink by 'texte' '-texte' %} Texte </a> {% endsortlink %} {% ifequal sort '-texte' %}<i class="fa fa-sort-desc"></i> {% else %}{% ifequal sort 'texte' %} <i class="fa fa-sort-asc"></i> {% endifequal %}{% endifequal %} </td>
-				<td> {% sortlink by 'annee' '-annee' %} Année </a> {% endsortlink %} {% ifequal sort 'annee' %}<i class="fa fa-sort-asc"></i> {% else %}{% ifequal sort '-annee' %} <i class="fa fa-sort-desc"></i> {% endifequal %}{% endifequal %} </td>
+				<td> {% sortlink by 'titre' '-titre' %} Titre {% endsortlink %} {% ifequal sort '-titre' %}<i class="fa fa-sort-desc"></i> {% else %}{% ifequal sort 'titre' %} <i class="fa fa-sort-asc"></i> {% endifequal %}{% endifequal %} </td>
+				<td> {% sortlink by 'texte' '-texte' %} Texte {% endsortlink %} {% ifequal sort '-texte' %}<i class="fa fa-sort-desc"></i> {% else %}{% ifequal sort 'texte' %} <i class="fa fa-sort-asc"></i> {% endifequal %}{% endifequal %} </td>
+				<td> {% sortlink by 'annee' '-annee' %} Année{% endsortlink %} {% if not sort %} <i class="fa fa-sort-desc"></i> {% endif %} {% ifequal sort 'annee' %}<i class="fa fa-sort-asc"></i> {% else %}{% ifequal sort '-annee' %} <i class="fa fa-sort-desc"></i> {% endifequal %}{% endifequal %} </td>
 				<td> Tag(s) </td>
+				<td> Nature(s) </td>
 				<td> Compléments </td>
 			</tr>
 			{# On delimite le nombre de resultats a 10 par pages #}
@@ -39,6 +40,7 @@
 					<td>{% if une_ressource.texte %} {{ une_ressource.texte|truncatewords:20 }} {% else %} Aucun texte {% endif %} </td>
 					<td> <a href="?q={{une_ressource.annee}}"> {{une_ressource.annee}}</a> </td>
 					<td>{% for un_tag in une_ressource.tags.all %} <a href="/search/?q={{un_tag.nom}}"> {{un_tag.nom}}</a> {% empty %} Aucun tag {% endfor %} </td>
+					<td>{% for une_nature in une_ressource.ressourcecatsscat_set.all %} <a href="/search/?q={{une_nature.id_sous_cat.nom}}"> {{une_nature.id_sous_cat.nom}}</a> {% empty %} Aucune nature {% endfor %} </td>
 					<td> <b> <a href="/opst_root/affichage/{{une_ressource.slug}}"> Plus d'infos </a> </b> </td>
 				</tr>
 			{% endfor %}

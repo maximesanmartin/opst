@@ -183,11 +183,11 @@ input[type="password"] {
     color: #a9a3a1;
 }
 
-#search-box input[type="text"] {
+.search-box input[type="text"] {
     width: 76%;
 }
 
-#search-box input[type="submit"] {
+.search-box input[type="submit"] {
     color: transparent;
     width: 14%;
     height: 21px;
@@ -375,7 +375,7 @@ input[type="password"] {
 	margin:0px;padding:0px;
 	width:100%;
 	/*box-shadow: 10px 10px 5px #888888;*/
-	border:1px solid #000000;
+	/*border:1px solid #000000;*/
 	
 	-moz-border-radius-bottomleft:0px;
 	-webkit-border-bottom-left-radius:0px;
@@ -474,4 +474,17 @@ input[type="password"] {
 
 .TableauResultat tr:first-child a{
 	color: white;
+}
+
+.ressource a{
+	color : black;
+}
+
+.ressource:hover a{
+	background-color: #DDDEEE;
+	border-radius: 10px;
+}
+
+.ressource a:hover{
+	text-decoration: underline;
 }

@@ -21,6 +21,7 @@ def traitement_requete_simple(query):
 				| Q(auteurs__nom__iexact=chaine) \
 				| Q(auteurs__prenom__iexact=chaine) \
 				| Q(ressourcecatsscat__id_categorie__nom__iexact=chaine) \
+				| Q(ressourcecatsscat__id_sous_cat__nom__icontains=chaine) \
 				| Q(titre__icontains=chaine) \
 				| Q(texte__icontains=chaine) \
 				| Q(formation__icontains=chaine) \

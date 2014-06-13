@@ -58,8 +58,13 @@ class SearchBoxPlugin(CMSPluginBase):
     def render(self, context, instance, placeholder):
 
         f = SearchBoxForm(context['request'].GET)
+        f2 = MultipleSearchBoxForm(context['request'].GET)
+        # Envoi des variables au template incluant le formulaire f et l'instance de la classe modele
         context.update({'instance': instance,
-                        'form': f})
+                        'form2': f2,
+                        'form': f,
+                        'path': context['request'].path_info,
+                        'q': context['request'].GET.get('q')})
 
         return context
 
@@ -155,12 +160,12 @@ class SearchResultPlugin(CMSPluginBase):
                 (results, nb_res) = traitement_requete_simple(q)
 		        # Traitement dans le cas d'envoi de parametre q non renseigne
                 try:
-                    context.update({'results': results, 'results_n': nb_res, 'query_string': q.strip()})
+                    context.update({'results': results, 'results_n': nb_res, 'query_string': q.strip(), 'sort': context['request'].GET.get('sort')})
                 except UnboundLocalError:
                     context.update({'results': [], 'results_n': 0, 'query_string': ''})
         elif context['request'].GET.get('crit_1'):
             (results, nb_res) = traitement_requete_avancee(context)
-            context.update({'results': results, 'results_n': nb_res})
+            context.update({'results': results, 'results_n': nb_res, 'sort': context['request'].GET.get('sort')})
         else:
             context.update({'results': [], 'results_n': 0, 'query_string': ''})
         return context
