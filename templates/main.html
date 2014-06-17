@@ -7,7 +7,7 @@
     <title>OPSN - {{ request.current_page.get_title|default:"Affichage" }}</title>
     <meta name="keywords" content="{{ request.current_page.pagetagging.page_tags }}" />
     <link rel="icon" type="image/png" href="{% static "style/logo_128.png" %}" />
-	<script src="{% static "js/jquery-2.1.1.js" %}"></script>
+	<script src="{% static "js/jquery-1.8.3.min.js" %}"></script>
     {% render_block "css" %}
 {% addtoblock "css" %}
     <link rel="stylesheet" type="text/css" href="{% static "style/yui3-fonts-reset-grids-base-combo-min.css" %}" media="all" />

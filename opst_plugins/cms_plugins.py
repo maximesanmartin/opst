@@ -172,6 +172,35 @@ class SearchResultPlugin(CMSPluginBase):
 # Ajout du plugin a la liste
 plugin_pool.register_plugin(SearchResultPlugin)
 
+class SiteSearchResultPlugin(CMSPluginBase):
+
+    model = CMSPluginModel
+    name = _("Site Search Result")
+    render_template = "cms_plugins/searchresult.html"
+
+    def render(self, context, instance, placeholder):
+
+        results = {}
+
+        f = SearchBoxForm(context['request'].GET)
+
+        if f.is_valid():
+
+            q = f.cleaned_data.get('q')
+            q_re = '(%s)' % '|'.join(re_blanks.split(q))
+
+            for i in list(Title.objects.filter(title__iregex=q_re)):
+                if not i.page in results: results[i.page] = i.title
+
+            for i in list(Text.objects.filter(body__iregex=q_re)):
+                if not i.page in results: results[i.page] = i.body
+       
+        context.update({'results': results, 'results_n': len(results)})
+
+        return context
+
+plugin_pool.register_plugin(SiteSearchResultPlugin)
+
 class SitemapPlugin(CMSPluginBase):
 
     model = CMSPluginModel

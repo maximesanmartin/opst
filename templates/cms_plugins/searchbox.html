@@ -16,11 +16,15 @@
 		</form>
 	</div>
 	<button id="sup">{% if form.q %} Afficher formulaire avancé {% else %} Afficher formulaire simple {% endif %}</button>
+	<br/>
+	{% if q %}<a href="/site-search/?q={{q}}"><button id="others"> Recherche sur tout le site </button></a>{% endif %}
 	<script type="text/javascript">
 		{% if q %}
 			$('#box2').hide();
+			$("#sup").html("Afficher formulaire avancé");
 		{% else %}
 			$('#box1').hide();
+			$("#sup").html("Afficher formulaire simple");
 		{% endif %}
 	
 		$("#sup").click(function() {
@@ -36,4 +40,8 @@
 			}
 		});
 	</script>
+{% else %}
+	{% ifequal path '/site-search/' %}
+		<a href="/search/?q={{q}}"><button id="simply"> Recherche bibliographique </button></a>
+	{% endifequal %}
 {% endifequal %}
