@@ -36,8 +36,8 @@
 			{% for une_ressource in sorted_objects %}
 				<tr>
 					<td>{% for un_auteur in une_ressource.auteurs.all %} <a href="/search/?q={{un_auteur.nom}}+{{un_auteur.prenom}}"> {{un_auteur.nom}} {{un_auteur.prenom}}.</a> {% empty %} Aucun auteur {% endfor %} </td>
-					<td>{% if une_ressource.lien_texte %}<a href="{{une_ressource.lien_texte}}"> {% endif %} {{une_ressource.titre}} </a> </td>
-					<td>{% if une_ressource.texte %} {{ une_ressource.texte|truncatewords:20 }} {% else %} Aucun texte {% endif %} </td>
+					<td> <div id="cadre">{% if une_ressource.lien_texte %}<a href="{{une_ressource.lien_texte}}"> {% endif %} {{une_ressource.titre}} </a> </div> </td>
+					<td> {% if une_ressource.texte %} {{ une_ressource.texte|truncatewords:20 }} </div> {% else %} Aucun texte {% endif %} </td>
 					<td> <a href="?q={{une_ressource.annee}}"> {{une_ressource.annee}}</a> </td>
 					<td>{% for un_tag in une_ressource.tags.all %} <a href="/search/?q={{un_tag.nom}}"> {{un_tag.nom}}</a> {% empty %} Aucun tag {% endfor %} </td>
 					<td>{% for une_nature in une_ressource.ressourcecatsscat_set.all %} <a href="/search/?q={{une_nature.id_sous_cat.nom}}"> {{une_nature.id_sous_cat.nom}}</a> {% empty %} Aucune nature {% endfor %} </td>
