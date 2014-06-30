@@ -117,8 +117,7 @@ class Auteur(models.Model):
     prenom = models.CharField(max_length=90)
     def __unicode__(self):
         return self.nom + ' ' + self.prenom 
-    def save(self, *args, **kwargs):
-        super(Auteur, self).save(*args, **kwargs) # Call the "real" save() method.
+    
     class Meta:
         db_table = u'auteur'
 
@@ -133,7 +132,7 @@ class Categorie(models.Model):
 
 class Revue(models.Model):
     id = models.IntegerField(primary_key=True)
-    nom = models.CharField(max_length=300)
+    nom = models.CharField(max_length=600)
     nb_num_revues = models.IntegerField(null=True, blank=True, verbose_name="Nombre de numéros de revues")
     def __unicode__(self):
         return self.nom
@@ -154,10 +153,10 @@ class Tag(models.Model):
 	
 class Ressource(models.Model):
     id = models.IntegerField(primary_key=True)
-    titre = models.CharField(max_length=600)
-    slug = models.SlugField(max_length=600, blank=True)
+    titre = models.CharField(max_length=900)
+    slug = models.SlugField(max_length=900, blank=True)
     texte = models.TextField(blank=True)
-    lien_texte = models.CharField(max_length=300, blank=True)
+    lien_texte = models.CharField(max_length=1800, blank=True)
     annee = models.IntegerField()
     mois = models.CharField(max_length=30, blank=True)
     lieu = models.CharField(max_length=300, blank=True)
@@ -169,8 +168,8 @@ class Ressource(models.Model):
     formation = models.CharField(max_length=300, blank=True)
     universite = models.CharField(max_length=300, blank=True, verbose_name='Université')
     discipline = models.CharField(max_length=300, blank=True)
-    type_production = models.CharField(max_length=300, blank=True)
-    type_rapport = models.CharField(max_length=300, blank=True)
+    type_production = models.CharField(max_length=900, blank=True)
+    type_rapport = models.CharField(max_length=900, blank=True)
     id_revue = models.ForeignKey(Revue, db_column='id_revue', verbose_name= 'Nom de la revue attribuée', null=True, blank=True)
     tags = models.ManyToManyField(Tag)
     auteurs = models.ManyToManyField(Auteur)
@@ -198,7 +197,7 @@ class RessourceCatSsCat(models.Model):
         return u"{} à {}/{}".format(self.id_ressource.titre, self.id_categorie.nom, self.id_sous_cat.nom)
     class Meta:
         db_table = u'ressource_cat_ss_cat'
-        verbose_name = 'Ressources - Categories - Sous-Catégorie'
+        verbose_name = 'Ressources - Categories - Sous-Catégories'
 
 class RessourcePluginModel(CMSPlugin):
     ressource = models.ForeignKey(Ressource, verbose_name='Ressource')

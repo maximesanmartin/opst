@@ -8,6 +8,7 @@
     <meta name="keywords" content="{{ request.current_page.pagetagging.page_tags }}" />
     <link rel="icon" type="image/png" href="{% static "style/logo_128.png" %}" />
 	<script src="{% static "js/jquery-1.8.3.min.js" %}"></script>
+	<script src="{% static "js/jquery.jtruncate.js" %}"></script>
     {% render_block "css" %}
 {% addtoblock "css" %}
     <link rel="stylesheet" type="text/css" href="{% static "style/yui3-fonts-reset-grids-base-combo-min.css" %}" media="all" />
@@ -32,6 +33,21 @@
     var d=document, g=d.createElement("script"), s=d.getElementsByTagName("script")[0]; g.type="text/javascript";
     g.defer=true; g.async=true; g.src=u+"piwik.js"; s.parentNode.insertBefore(g,s);
   })();
+
+ // On attend que la page soit chargée
+jQuery(document).ready(function()
+{
+   jQuery('.toggle').jTruncate({
+		moreText: "[lire la suite]",
+		length: 300,  
+        minTrail: 10,   
+        lessText: "[cacher texte]",  
+        ellipsisText: "...",  
+        moreAni: "fast",  
+        lessAni: 300
+	});
+});
+/* ]]> */
 </script>
 <!-- End Piwik Code -->
 

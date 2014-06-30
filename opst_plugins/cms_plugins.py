@@ -42,7 +42,7 @@ class TagCloudPlugin(CMSPluginBase):
         q = Tag1.objects.annotate(i_count=Count('ressource')).filter(i_count__gte=instance.items_min)
 		
         context.update({'instance': instance,
-                        'tags': map(lambda t: (t, log((min(t.i_count, 500) - instance.items_min) + 1)*18), q)})
+                        'tags': map(lambda t: (t, 10 + (min(t.i_count,30) - instance.items_min) * 1), q)})
 
         return context
 

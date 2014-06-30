@@ -35,12 +35,12 @@
 			{# Pour chaque ressource recupere dans la liste "results" on affiche une nouvelle ligne #}
 			{% for une_ressource in sorted_objects %}
 				<tr>
-					<td>{% for un_auteur in une_ressource.auteurs.all %} <a href="/search/?q={{un_auteur.nom}}+{{un_auteur.prenom}}"> {{un_auteur.nom}} {{un_auteur.prenom}}.</a> {% empty %} Aucun auteur {% endfor %} </td>
-					<td> <div id="cadre">{% if une_ressource.lien_texte %}<a href="{{une_ressource.lien_texte}}"> {% endif %} {{une_ressource.titre}} </a> </div> </td>
+					<td> <div id="cadre">{% for un_auteur in une_ressource.auteurs.all %} <a href="/search/?q={{un_auteur.nom}}+{{un_auteur.prenom}}"> {{un_auteur.nom}} {{un_auteur.prenom}}.</a> <br/> {% empty %} Aucun auteur {% endfor %} </div> </td>
+					<td> {% if une_ressource.lien_texte %}<div id="cadre"><a href="{{une_ressource.lien_texte}}" target="_blank"> {% endif %} {{une_ressource.titre}} </a> </div> </td>
 					<td> {% if une_ressource.texte %} {{ une_ressource.texte|truncatewords:20 }} </div> {% else %} Aucun texte {% endif %} </td>
 					<td> <a href="?q={{une_ressource.annee}}"> {{une_ressource.annee}}</a> </td>
-					<td>{% for un_tag in une_ressource.tags.all %} <a href="/search/?q={{un_tag.nom}}"> {{un_tag.nom}}</a> {% empty %} Aucun tag {% endfor %} </td>
-					<td>{% for une_nature in une_ressource.ressourcecatsscat_set.all %} <a href="/search/?q={{une_nature.id_sous_cat.nom}}"> {{une_nature.id_sous_cat.nom}}</a> {% empty %} Aucune nature {% endfor %} </td>
+					<td> {% if une_ressource.tags.all %}<div id="cadre">{% endif %}{% for un_tag in une_ressource.tags.all %} <a href="/search/?q={{un_tag.nom}}"> {{un_tag.nom}}</a> <br/> {% empty %} Aucun tag {% endfor %} </div> </td>
+					<td> <div id="cadre">{% for une_nature in une_ressource.ressourcecatsscat_set.all %} <a href="/search/?q={{une_nature.id_sous_cat.nom}}"> {{une_nature.id_sous_cat.nom}}</a> {% empty %} Aucune nature {% endfor %} </div> </td>
 					<td> <b> <a href="/opst_root/affichage/{{une_ressource.slug}}"> Plus d'infos </a> </b> </td>
 				</tr>
 			{% endfor %}

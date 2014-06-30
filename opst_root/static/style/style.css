@@ -400,10 +400,10 @@ input[type="password"] {
 	margin:0px;padding:0px;
 
 }.TableauResultat td:nth-child(2){
-	min-width: 250px;
+	min-width: 30%;
 	
 }.TableauResultat td:nth-child(3){
-	min-width: 250px;
+	min-width: 30%;
 	
 }.TableauResultat tr:last-child td:last-child {
 	-moz-border-radius-bottomright:0px;
@@ -423,9 +423,9 @@ input[type="password"] {
 	-moz-border-radius-bottomleft:0px;
 	-webkit-border-bottom-left-radius:0px;
 	border-bottom-left-radius:0px;
-}.TableauResultat tr:not(:first-child):hover td:not(:nth-child(2)) a, .TableauResultat tr:not(:first-child):hover #cadre{
-	background-color: #C6D5FF;
-	border-radius: 10px;
+}.TableauResultat tr:not(:first-child):hover td a, .TableauResultat tr:not(:first-child):hover #cadre{
+	background-color: #DDE5FF;
+	border-radius: 6px;
 	
 }.TableauResultat tr:not(:first-child) td:not(:nth-child(2)) a{
 	color: inherit;
@@ -457,11 +457,11 @@ input[type="password"] {
 	border-width:0px 0px 0px 0px;
 }
 .TableauResultat tr:first-child td{
-	background:-o-linear-gradient(bottom, #dbdbdb 5%, #a3a3a3 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dbdbdb), color-stop(1, #a3a3a3) );
-	background:-moz-linear-gradient( center top, #dbdbdb 5%, #a3a3a3 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#dbdbdb", endColorstr="#a3a3a3"); /* Non compatible avec IE */	background: -o-linear-gradient(top,#dbdbdb,a3a3a3);
+	background:-o-linear-gradient(bottom, #E7E4E3 5%, #E7E4E3 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a3a3a3), color-stop(1, #a3a3a3) );
+	background:-moz-linear-gradient( center top, #a3a3a3 5%, #a3a3a3 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#a3a3a3", endColorstr="#a3a3a3"); /* Non compatible avec IE */	background: -o-linear-gradient(top,#a3a3a3,a3a3a3);
 
-	background-color:#dbdbdb;
+	background-color:#E7E4E3;
 	border:0px solid #000000;
 	text-align:left;
 	border-width:0px 0px 0px 0px;
@@ -472,11 +472,11 @@ input[type="password"] {
 	min-width: 60px;
 }
 .TableauResultat tr:first-child:hover td{
-	background:-o-linear-gradient(bottom, #dbdbdb 5%, #a3a3a3 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dbdbdb), color-stop(1, #a3a3a3) );
-	background:-moz-linear-gradient( center top, #dbdbdb 5%, #a3a3a3 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#dbdbdb", endColorstr="#a3a3a3");	background: -o-linear-gradient(top,#dbdbdb,a3a3a3);
+	background:-o-linear-gradient(bottom, #a3a3a3 5%, #a3a3a3 100%);	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #a3a3a3), color-stop(1, #a3a3a3) );
+	background:-moz-linear-gradient( center top, #a3a3a3 5%, #a3a3a3 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr="#a3a3a3", endColorstr="#a3a3a3");	background: -o-linear-gradient(top,#a3a3a3,a3a3a3);
 
-	background-color:#dbdbdb;
+	background-color:#a3a3a3;
 }
 .TableauResultat tr:first-child td:first-child{
 	border-width:0px 0px 0px 0px;
@@ -502,12 +502,8 @@ input[type="password"] {
 }
 
 .ressource:hover a{
-	background-color: #C6D5FF;
+	background-color: #DCDCDC;
 	border-radius: 10px;
-}
-
-.ressource a:hover{
-	text-decoration: underline;
 }
 
 #sup, #others, #simply{
@@ -516,4 +512,16 @@ input[type="password"] {
 
 #sup:hover, #others:hover, #simply:hover{
 	opacity: 0.6;
+}
+
+.pagination{
+	font-size: 130%;
+}
+
+.toggle{
+	text-align: left;
+}
+
+#modif{
+	text-align: right;
 }

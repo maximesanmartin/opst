@@ -32,7 +32,7 @@ def get_ressources(request):
 def affichage_ressource(request, slug):
 	""" Affiche une ressource complete comprenant
 		les tags, les auteurs, les categories """
-
+	edit = request.GET.get('edit')
 	# Récupération de la ressource
 	ressource = Ressource.objects.get(slug=slug)
 	# Récupération de la revue

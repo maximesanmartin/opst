@@ -16,20 +16,18 @@ def traitement_requete_simple(query):
 		req = []
 	# la liste va etre filtree a chaque iteration et va conserver les ressources en rapport avec les chaines donnees
 	for chaine in liste:
-		req = req.filter(Q(id_revue__nom__icontains=chaine) \
-				| Q(tags__nom__iexact=chaine) \
-				| Q(auteurs__nom__iexact=chaine) \
+		req = req.filter( Q(tags__nom__iexact=chaine) \
+				| Q(id_revue__nom__icontains=chaine) \
+				| Q(auteurs__nom__icontains=chaine) \
 				| Q(auteurs__prenom__iexact=chaine) \
-				| Q(ressourcecatsscat__id_categorie__nom__iexact=chaine) \
+				| Q(editeur__iexact=chaine) \
 				| Q(ressourcecatsscat__id_sous_cat__nom__icontains=chaine) \
 				| Q(titre__icontains=chaine) \
 				| Q(texte__icontains=chaine) \
 				| Q(formation__icontains=chaine) \
 				| Q(universite__icontains=chaine) \
 				| Q(discipline__icontains=chaine) \
-				| Q(type_rapport__icontains=chaine) \
-				| Q(annee__iexact=chaine) \
-				| Q(mois__iexact=chaine)).distinct().order_by('-annee')
+				| Q(annee__iexact=chaine)).distinct().order_by('-annee')
 	# On recupere le total de resultats pour un affichage ulterieur
 	nb_res = len(req)
 	# On renvoie un tuple contenant l'ensemble des ressources d'une page donnee et le total des resultats

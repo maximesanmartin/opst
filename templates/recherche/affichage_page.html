@@ -1,4 +1,5 @@
 {% extends "main.html" %}
+{% load url from future %}
 {% block main %}
 	<div id="main">   
 		<div class="yui3-g">
@@ -17,14 +18,14 @@
 					<br/><br/><b> Année: </b> 
 					<a href="/search/?q={{ressource.annee}}">{{ressource.annee}}</a>,<br/>
 					{% if ressource.page_deb and ressource.page_fin %} <b> Pages: </b> {{ ressource.page_deb }} à {{ressource.page_fin}}, <br/> {% endif %}
-					{% if ressource.date_debut and ressource.date_fin %} <b> Dates: </b>  du {{ressource.date_debut}} au {{ressource.date_fin}}, <br/> {% endif %}					
+					{% if ressource.date_debut and ressource.date_fin %} <b> Date: </b> {% ifequal ressource.date_debut ressource.date_fin %} {{ressource.date_debut}} {% else %}  du {{ressource.date_debut}} au {{ressource.date_fin}}{% endifequal %}, <br/> {% endif %}					
 					{% if ressource.editeur %}  <b> Editeur: </b> <a href="/search/?q={{ressource.editeur}}"> {{ressource.editeur}}</a>, <br/> {% endif %}
 					{% if ressource.formation %} <b> Formation: </b> <a href="/search/?q={{ressource.formation}}"> {{ressource.formation}}</a>, <br/> {% endif %}
 					{% if ressource.universite %} <b> Universite: </b> <a href="/search/?q={{ressource.universite}}">  Université {{ressource.universite}}</a>, <br/> {% endif %}
 					{% if ressource.discipline %} <b> Discipline: </b> <a href="/search/?q={{ressource.discipline}}"> {{ressource.discipline}}</a>, <br/> {% endif %}
-					{% if ressource.type_production %} <b> Type de production: </b> <a href="/search/?q={{ressource.type_production}}"> {{ressource.type_production}}</a>, <br/> {% endif %}	
-					{% if ressource.type_rapport %} <b> Type de Rapport: </b> <a href="/search/?q={{ressource.type_rapport}}"> {{ressource.type_rapport}}</a>, <br/> {% endif %}
-					{% if revue.nom %}<b> Revue: </b> 
+					{% if ressource.type_production %} <b> Type de production: </b> {{ressource.type_production}}, <br/> {% endif %}	
+					{% if ressource.type_rapport %} <b> Type de Rapport: </b>  {{ressource.type_rapport}}, <br/> {% endif %}
+					{% if revue.nom %}<b>{% for un_csc in ressource.ressourcecatsscat_set.all %} {% ifequal un_csc.id_sous_cat.slug 'colloques-seminaires' %} Colloque: {% else %} Revue: {% endifequal %}{% endfor %}</b>
 					<i> <a href="/search/?q={{revue.nom}}">{{revue.nom}}</a></i>,<br/>{% endif %}
 					<b> Auteur(s): </b>
 					{% for un_auteur in auteurs %}
@@ -44,6 +45,7 @@
 					{% endfor %}
 					</br/><br/>
 					{% if ressource.lien_texte %}<h4><a href="{{ressource.lien_texte}}" target="_blank"> Texte complet ici </a> </h4> {% endif %}
+					{% if request.toolbar.edit_mode %} <div id="modif"> <a href="{% url 'admin:opst_plugins_ressource_change' ressource.id %}" target="_blank"> <button> Modifier la ressource </button></a></div> {% endif %}
 				</div>
 			</div>
 			<div class="yui3-u-1-5" id="col-right">       

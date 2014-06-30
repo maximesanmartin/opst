@@ -38,7 +38,7 @@ class RessourceAdmin(admin.ModelAdmin):
 	# list_filter filtre les resultats de recherche en fonction des valeurs données dans le tuple
     list_filter = ('annee', 'mois')
 	# search_fields filtre les resultats de la recherche en fonction des valeurs données dans le tuple
-    search_fields = ('titre', 'texte')
+    search_fields = ('titre',)
 	# Trie par défaut par "id"
     ordering = ('id', )
     # Configuration du formulaire d'édition
@@ -76,7 +76,9 @@ class RessourceCatSsCatAdmin(admin.ModelAdmin):
 		
 # Cette classe gere l'affichage du modele Auteur
 class AuteurAdmin(admin.ModelAdmin):
-    list_display = ('id', 'nom')
+    list_display = ('nom', 'prenom')
+    list_filter = ('nom', 'prenom')
+    ordering = ('nom', 'prenom')
     fieldsets = (
         # Fieldset 1 : meta-info (titre, auteur…)
        ('Auteur', {
