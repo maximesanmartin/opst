@@ -34,7 +34,7 @@ class AuteurInline(admin.StackedInline):
 # Cette classe gere l'affichage du modele Ressource
 class RessourceAdmin(admin.ModelAdmin):
     # Configuration de la liste
-    list_display = ('id', 'titre', 'slug', 'annee')
+    list_display = ('titre', 'slug', 'annee')
 	# list_filter filtre les resultats de recherche en fonction des valeurs données dans le tuple
     list_filter = ('annee', 'mois')
 	# search_fields filtre les resultats de la recherche en fonction des valeurs données dans le tuple

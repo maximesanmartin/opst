@@ -94,29 +94,6 @@ class MultipleSearchBoxPlugin(CMSPluginBase):
 # Ajout du plugin a la liste
 plugin_pool.register_plugin(MultipleSearchBoxPlugin)
 
-class RessourcePlugin(CMSPluginBase):
-
-    model = RessourcePluginModel
-    name = _("Ressource")
-    render_template = "cms_plugins/ressource.html"
-
-    def render(self, context, instance, placeholder):
-
-        # Recuperation des auteurs
-        print instance.id
-        auteurs = Auteur.objects.filter(ressource__id=instance.ressource_id)
-        # Recuperation des tags
-        tags = Tag1.objects.filter(ressource__id=instance.ressource_id)
-        # Donnees de la ressource a passer au template, instance est obligatoire
-        context.update({'instance': instance,
-                        'tags': tags,
-                        'auteurs': auteurs,
-                        })
-
-        return context
-
-plugin_pool.register_plugin(RessourcePlugin)
-
 class ListRessourcesPlugin(CMSPluginBase):
 
     name = _("ListeRessources")
@@ -127,7 +104,8 @@ class ListRessourcesPlugin(CMSPluginBase):
         # Donnees de la ressource a passer au template, instance est obligatoire
         context.update({'instance': instance,
                         'ressources': ressources,
-                        'annees': get_dates(ressources)
+                        'annees': get_dates(ressources),
+                        'request': context['request']
                         })
 
         return context

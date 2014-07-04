@@ -1,37 +1,45 @@
 <b> {% if annees %} {{annees|last}} {% else %} Aucune Ressource disponible à cette page {% endif %} </b><br/><br/>
 {% for ressource in ressources %}
 	<div class="ressource">
-	{% ifequal annees|last ressource.annee %}
-	{% else %}
-	<b> {{annees.pop.del}}{{ annees|last }} </b><br/><br/>
-	{% endifequal %}
-	{% for un_auteur in ressource.auteurs.all %}
-	<a href="/search/?q={{un_auteur.nom}}+{{un_auteur.prenom}}">{{un_auteur.nom}} {{un_auteur.prenom}}.</a>,
-	{% endfor %}
-	{% if ressource.lien_texte %}<a href="{{ressource.lien_texte}}" target="_blank" id="titre">{% endif %}« {{ressource.titre}} »</a>,
-	{% if ressource.texte %}<div class="toggle">{{ressource.texte}}</div> {% endif %}
-	{% if ressource.mois %} <a href="/search/?q={{ressource.mois}}"> {{ressource.mois}}</a> {% endif %}
-	<a href="/search/?q={{ressource.annee}}">{{ressource.annee}}</a>,
-	{% if ressource.id_revue.nom %}
-	<i> <a href="/search/?q={{ressource.id_revue.nom}}"> {{ressource.id_revue.nom}}</a></i>, {% endif %}
-	{% if ressource.page_deb and ressource.page_fin %} p.{{ ressource.page_deb }}-{{ressource.page_fin}}, {% endif %}
-	{% if ressource.date_debut and ressource.date_fin %} {% ifequal ressource.date_debut ressource.date_fin %} {{ressource.date_debut}} {% else %}  du {{ressource.date_debut}} au {{ressource.date_fin}}, {% endifequal %} {% endif %}					
-	{% if ressource.editeur %}  <a href="/search/?q={{ressource.editeur}}"> {{ressource.editeur}}</a>, {% endif %}
-	{% if ressource.formation %} <a href="/search/?q={{ressource.formation}}"> {{ressource.formation}}</a>, {% endif %}
-	{% if ressource.universite %} <a href="/search/?q={{ressource.universite}}">  Université de {{ressource.universite}}</a>, {% endif %}
-	{% if ressource.discipline %} <a href="/search/?q={{ressource.discipline}}"> {{ressource.discipline}}</a>, {% endif %}
-	{% if ressource.type_production %} {{ressource.type_production}}, {% endif %}
-	{% if ressource.type_rapport %} {{ressource.type_rapport}},{% endif %}
-	{% if ressource.tags.all %}
-		<b> Tag{{ressource.tags.all.count|pluralize}}: </b> 
-		{% for un_tag in ressource.tags.all %}
-			<i> <a href="/search/?q={{un_tag.nom}}">{{un_tag.nom}}</a></i>,
+		{% ifequal annees|last ressource.annee %}
+		{% else %}
+		<b> {{annees.pop.del}}{{ annees|last }} </b><br/><br/>
+		{% endifequal %}
+		{% for un_auteur in ressource.auteurs.all %}
+		<a href="/search/?q={{un_auteur.nom}}+{{un_auteur.prenom}}">{{un_auteur.nom}} {{un_auteur.prenom}}.</a>,
 		{% endfor %}
-	{% endif %}
-	<b> Type{{ressource.ressourcecatsscat_set.all.count|pluralize}} de publication: </b>
-	{% for csc in ressource.ressourcecatsscat_set.all %}
-		<i> <a href="/search/?q={{csc.id_categorie.nom}}"> {{csc.id_categorie.nom}}</a>/<a href="/search/?q={{csc.id_sous_cat.nom}}">{{csc.id_sous_cat.nom}}</a></i>
-	{% endfor %}
-	<br/><br/>
+		{% if ressource.lien_texte %}<a href="{{ressource.lien_texte}}" target="_blank" id="titre">{% endif %}« {{ressource.titre}} »</a>,
+		{% if ressource.texte %}<div class="toggle">{{ressource.texte}}</div> {% endif %}
+		{% if ressource.mois %} <a href="/search/?q={{ressource.mois}}"> {{ressource.mois}}</a> {% endif %}
+		<a href="/search/?q={{ressource.annee}}">{{ressource.annee}}</a>,
+		{% if ressource.id_revue.nom %}
+		<i> <a href="/search/?q={{ressource.id_revue.nom}}"> {{ressource.id_revue.nom}}</a></i>, {% endif %}
+		{% if ressource.page_deb and ressource.page_fin %} p.{{ ressource.page_deb }}-{{ressource.page_fin}}, {% endif %}
+		{% if ressource.date_debut and ressource.date_fin %} {% ifequal ressource.date_debut ressource.date_fin %} {{ressource.date_debut}} {% else %}  du {{ressource.date_debut}} au {{ressource.date_fin}}, {% endifequal %} {% endif %}					
+		{% if ressource.editeur %}  <a href="/search/?q={{ressource.editeur}}"> {{ressource.editeur}}</a>, {% endif %}
+		{% if ressource.formation %} <a href="/search/?q={{ressource.formation}}"> {{ressource.formation}}</a>, {% endif %}
+		{% if ressource.universite %} <a href="/search/?q={{ressource.universite}}">  Université de {{ressource.universite}}</a>, {% endif %}
+		{% if ressource.discipline %} <a href="/search/?q={{ressource.discipline}}"> {{ressource.discipline}}</a>, {% endif %}
+		{% if ressource.type_production %} {{ressource.type_production}}, {% endif %}
+		{% if ressource.type_rapport %} {{ressource.type_rapport}},{% endif %}
+		{% if ressource.tags.all %}
+			<b> Tag{{ressource.tags.all.count|pluralize}}: </b> 
+			{% for un_tag in ressource.tags.all %}
+				<i> <a href="/search/?q={{un_tag.nom}}">{{un_tag.nom}}</a></i>,
+			{% endfor %}
+		{% endif %}
+		<b> Type{{ressource.ressourcecatsscat_set.all.count|pluralize}} de publication: </b>
+		{% for csc in ressource.ressourcecatsscat_set.all %}
+			<i> <a href="/search/?q={{csc.id_categorie.nom}}"> {{csc.id_categorie.nom}}</a>/<a href="/search/?q={{csc.id_sous_cat.nom}}">{{csc.id_sous_cat.nom}}</a></i>
+		{% endfor %}
+		{% if request.toolbar.edit_mode %} <div class="modif"> <a href="{% url admin:opst_plugins_ressource_change ressource.id %}" target="_blank"> <button> Modifier la ressource </button></a></div> {% endif %}
+		{% if not forloop.last %}<br/><br/>{% endif %}
 	</div>
 {% endfor %}
+
+<script type="text/javascript">
+	$('.modif').hide('fast');
+	$('.ressource').hover(function(){
+		$(this).find('.modif').toggle();
+	});
+</script>

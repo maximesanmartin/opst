@@ -522,11 +522,11 @@ input[type="password"] {
 	text-align: left;
 }
 
-#modif{
+#search-result .modif{
 	text-align: right;
 }
 
-#modif button{
+.modif button{
 	cursor: pointer;
 	-moz-user-select: none;
     background-image: none;
@@ -541,7 +541,7 @@ input[type="password"] {
     white-space: nowrap;
 }
 
-#modif button:hover{
+.modif button:hover{
 	border: 1px solid grey;
 	background-color: #DDDDDD;
 }

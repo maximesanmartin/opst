@@ -45,7 +45,7 @@
 					{% endfor %}
 					</br/><br/>
 					{% if ressource.lien_texte %}<h4><a href="{{ressource.lien_texte}}" target="_blank"> Texte complet ici </a> </h4> {% endif %}
-					{% if request.toolbar.edit_mode %} <div id="modif"> <a href="{% url 'admin:opst_plugins_ressource_change' ressource.id %}" target="_blank"> <button> Modifier la ressource </button></a></div> {% endif %}
+					{% if request.toolbar.edit_mode %} <div class="modif"> <a href="{% url 'admin:opst_plugins_ressource_change' ressource.id %}" target="_blank"> <button> Modifier la ressource </button></a></div> {% endif %}
 				</div>
 			</div>
 			<div class="yui3-u-1-5" id="col-right">       
