@@ -23,7 +23,7 @@ DEFAULT_LANGUAGE = 0
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'testphp',
+        'NAME': 'new-opst',
 		'USER': 'root', 
 		'PASSWORD': '',
 		'HOST': 'localhost',

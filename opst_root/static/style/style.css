@@ -525,3 +525,23 @@ input[type="password"] {
 #modif{
 	text-align: right;
 }
+
+#modif button{
+	cursor: pointer;
+	-moz-user-select: none;
+    background-image: none;
+    border: 1px solid lightgrey;
+    border-radius: 4px;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857;
+    margin-bottom: 0;
+    padding: 6px 12px;
+    white-space: nowrap;
+}
+
+#modif button:hover{
+	border: 1px solid grey;
+	background-color: #DDDDDD;
+}
